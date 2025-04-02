@@ -1,16 +1,20 @@
-# Sử dụng Python image
-FROM python:3.9-slim
+# Sử dụng image chính thức của Python 3.10
+FROM python:3.10
 
-# Cài đặt thư viện cần thiết
+# Đặt thư mục làm việc trong container
 WORKDIR /app
+
+# Sao chép requirements.txt vào container
 COPY requirements.txt .
+
+# Cập nhật pip lên phiên bản mới nhất
+RUN pip install --upgrade pip
+
+# Cài đặt các thư viện từ requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Sao chép mã nguồn vào Docker container
 COPY . .
 
-# Expose port 5000
-EXPOSE 5000
-
-# Chạy ứng dụng Flask
-CMD ["python", "client.py"]
+# Chạy ứng dụng
+CMD ["python", "app.py"]  # Hoặc tên file Python chính của bạn
