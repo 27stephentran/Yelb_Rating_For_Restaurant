@@ -16,5 +16,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Sao chép mã nguồn vào Docker container
 COPY . .
 
-# Chạy ứng dụng
-CMD ["python", "app.py"]  # Hoặc tên file Python chính của bạn
+# Chạy ứng dụng (giả sử bạn sử dụng Flask)
+CMD ["gunicorn", "-w", "4", "app:app"]  # Thay 'app:app' bằng tên ứng dụng Flask của bạn nếu cần
